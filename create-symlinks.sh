@@ -22,8 +22,8 @@ COMPONENT_NAME_WITHOUT_PREFIX="fleetmanagement"
 SOURCE_FULL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SOURCE=$(python -c "import os.path; print os.path.relpath('$SOURCE_FULL', '.')")
 
-# Define the Joomla root. Expects to be two levels below the bash script executed
-JOOMLA_ROOT="$( cd "../../$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Define the Joomla root. Expects to be 3 levels below the bash script executed
+JOOMLA_ROOT="$( cd "../../../$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 JOOMLA_ROOT=$(python -c "import os.path; print os.path.relpath('$JOOMLA_ROOT', '.')")
 
 echo "---- Creating symlinks for $COMPONENT_NAME -----"
