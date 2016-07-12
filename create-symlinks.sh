@@ -1,13 +1,18 @@
 #!/bin/bash
 
+
 # Helper
 check_symlink_valid () {
 if [ ! -e $1 ]; then
-  echo "=> Folder / file $1 doesn't exist. Aborting."
+  echo "[ERROR] Folder or file $1 doesn't exist. Aborting."
   exit 255;
 else
-    echo "=> Symlink $1 created.";
+    echo "[SUCCESSFUL] Symlink $1 created.";
 fi
+}
+
+create_symlink () {
+    ln -s "$2" "$1"
 }
 
 #
@@ -21,6 +26,7 @@ COMPONENT_NAME_WITHOUT_PREFIX="fleetmanagement"
 # Save the source location
 SOURCE_FULL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SOURCE=$(python -c "import os.path; print os.path.relpath('$SOURCE_FULL', '.')")
+echo $SOURCE_FULL;
 
 # Define the Joomla root. Expects to be 3 levels below the bash script executed
 JOOMLA_ROOT="$( cd "../../../$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
