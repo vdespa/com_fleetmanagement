@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.6.0" method="upgrade">
+	<name>Fleet Management</name>
+	<creationDate>###CREATION_DATE###</creationDate>
+	<author>Valentin Despa</author>
+	<authorEmail>valentin@vdespa.com</authorEmail>
+	<authorUrl>http://www.vdespa.com</authorUrl>
+	<copyright>Valentin Despa</copyright>
+	<license>See LICENSE.txt</license>
+	<version>###VERSION###</version>
+	<description>Fleet Management component for testing purposes</description>
+	<files folder="site">
+		<filename>fleetmanagement.php</filename>
+		<filename>controller.php</filename>
+	</files>
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB/en-GB.com_fleetmanagement.ini</language>
+	</languages>
+	<administration>
+		<menu link='index.php?option=com_fleetmanagement'>Fleet Management</menu>
+		<files folder="admin">
+			<filename>fleetmanagement.php</filename>
+			<filename>controller.php</filename>
+		</files>
+	</administration>
+	<languages folder="admin">
+		<language tag="en-GB">language/en-GB/en-GB.com_fleetmanagement.ini</language>
+	</languages>
+	<media destination="com_fleetmanagement" folder="media">
+		<folder>images</folder>
+	</media>
+</extension>

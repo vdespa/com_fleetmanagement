@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Fleet management Extension Build"
+         default="build">
+
+	<!-- run the ant timestamp task -->
+	<tstamp/>
+	<tstamp>
+		<format property="datetime"
+		        pattern="dd.MM.yyyy"
+		        locale="en"/>
+	</tstamp>
+	<tstamp>
+		<format pattern="%s" property="timestamp"></format>
+	</tstamp>
+
+	<property name="componentName"
+	          value="com_fleetmanagement"/>
+	<property name="majorVersion"
+	          value="1"/>
+	<property name="minorVersion"
+	          value="0"/>
+	<property name="patchVersion"
+	          value="0"/>
+	<property name="stabilityVersion"
+	          value=""/>
+	<!-- For simplicity we use the current timestamp in order to create incremental releases -->
+	<property name="buildNumber"
+	          value="${timestamp}"/>
+
+	<property name="completeVersion"
+	          value="${majorVersion}.${minorVersion}.${patchVersion}.${buildNumber}${stabilityVersion}"/>
+
+	<property name="creationDate"
+	          value="${TODAY}"/>
+
+	<property name="sourceDir"
+	          value="."/>
+
+	<!-- This is where the releases will be saved -->
+	<property name="releaseDir" value="../../../_builds"/>
+
+	<!-- Temporary workspace folder during the build -->
+	<property name="workspaceDir" value="../../../_workspace"/>
+
+	<!-- Version -->
+	<property name="com.asinustimetracking.version"
+	          value="${completeVersion}"/>
+	<property name="com.asinustimetracking.creationdate"
+	          value="${creationDate}"/>
+	<property name="pkg.asinustimetracking.version"
+	          value="${completeVersion}"/>
+	<property name="pkg.asinustimetracking.creationdate"
+	          value="${creationDate}"/>
+	<property name="update.latestversion"
+	          value="${completeVersion}"/>
+
+	<!-- Do initialization stuff -->
+	<target name="prepare">
+		<mkdir dir="${workspaceDir}"/>
+		<mkdir dir="${releaseDir}"/>
+	</target>
+
+	<!-- Do cleanup stuff -->
+	<target name="cleanup">
+		<delete dir="${workspaceDir}"/>
+	</target>
+
+	<!-- Fill manifest file -->
+	<target name="updateManifest">
+		<copy todir="${workspaceDir}/${completeVersion}">
+			<fileset dir="${sourceDir}">
+				<include name="fleetmanagement.dist.xml"/>
+			</fileset>
+			<filterchain>
+				<replacetokens begintoken="###"
+				               endtoken="####">
+					<!-- TOKENS / Markers to be replaced -->
+					<token key="VERSION"
+					       value="${com.asinustimetracking.version}"/>
+					<token key="CREATION_DATE"
+					       value="${pkg.asinustimetracking.creationdate}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<move file="${workspaceDir}/${completeVersion}/fleetmanagement.dist.xml" tofile="${workspaceDir}/${completeVersion}/fleetmanagement.xml" overwrite="true"/>
+
+	</target>
+
+	<target name="build"
+	        depends="prepare, createArtifact, cleanup" />
+
+	<!-- Copy the main files of the project -->
+	<target name="copyFiles">
+		<copy todir="${workspaceDir}/${completeVersion}">
+			<fileset dir="${sourceDir}">
+				<exclude name="**/*.xml"/>
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Build the extension package from the folder -->
+	<target name="createArtifact"
+	        depends="copyFiles,updateManifest">
+		<zip destfile="${releaseDir}/${componentName}_${completeVersion}.zip">
+			<fileset dir="${workspaceDir}/${completeVersion}">
+				<include name="**/*"/>
+			</fileset>
+		</zip>
+	</target>
+</project>
