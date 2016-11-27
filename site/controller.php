@@ -16,6 +16,7 @@ class FleetmanagementController extends JControllerLegacy
 	public function display($cachable = false, $urlparams = false)
 	{
 		echo '<h2>' . JText::_('COM_FLEETMANAGEMENT_FE_MESSAGE') .'<h2>';
+		echo '<h3>NEW TEXT<h3>';
 		echo '<img src="'.  JURI::root() .'media/com_fleetmanagement/images/image.png">';
 		return $this;
 	}
