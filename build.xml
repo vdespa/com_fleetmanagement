@@ -2,15 +2,15 @@
 <project name="Fleet management Extension Build"
          default="build">
 
-	<!-- run the ant timestamp task -->
-	<tstamp/>
 	<tstamp>
-		<format property="datetime"
-		        pattern="dd.MM.yyyy"
-		        locale="en"/>
+        <format property="timestamp" pattern="%s"></format>
+		<!-- Alternative for Windows -->
+        <!--<format property="timestamp" pattern="%Y%m%d%H%M%S"></format>-->
+
 	</tstamp>
+
 	<tstamp>
-		<format pattern="%s" property="timestamp"></format>
+		<format property="DATE" pattern="%s" locale="nl_NL"/>
 	</tstamp>
 
 	<property name="componentName"
@@ -37,10 +37,10 @@
 	          value="."/>
 
 	<!-- This is where the releases will be saved -->
-	<property name="releaseDir" value="../../../_builds"/>
+	<property name="releaseDir" value="../../../._builds"/>
 
 	<!-- Temporary workspace folder during the build -->
-	<property name="workspaceDir" value="../../../_workspace"/>
+	<property name="workspaceDir" value="../../../._workspace"/>
 
 	<!-- Version -->
 	<property name="com.asinustimetracking.version"
