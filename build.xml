@@ -73,7 +73,7 @@
 			</fileset>
 			<filterchain>
 				<replacetokens begintoken="###"
-				               endtoken="####">
+				               endtoken="###">
 					<!-- TOKENS / Markers to be replaced -->
 					<token key="VERSION"
 					       value="${com.asinustimetracking.version}"/>
