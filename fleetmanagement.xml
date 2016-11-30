@@ -22,10 +22,10 @@
 			<filename>fleetmanagement.php</filename>
 			<filename>controller.php</filename>
 		</files>
+		<languages folder="administrator">
+			<language tag="en-GB">language/en-GB/en-GB.com_fleetmanagement.ini</language>
+		</languages>
 	</administration>
-	<languages folder="admin">
-		<language tag="en-GB">language/en-GB/en-GB.com_fleetmanagement.ini</language>
-	</languages>
 	<media destination="com_fleetmanagement" folder="media">
 		<folder>images</folder>
 	</media>
